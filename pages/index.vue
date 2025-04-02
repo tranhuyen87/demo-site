@@ -31,7 +31,7 @@
 const config = useRuntimeConfig();
 
 const { data: response } = await useFetch(
-  `${config.public.apiBase}/rcms-api/3/newstopic /3`,
+  `${config.public.apiBase}/rcms-api/3/newstopic/3`,
   {
       credentials: 'include',
   }
