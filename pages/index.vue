@@ -34,8 +34,6 @@ const { data: response } = await useFetch(
   `${config.public.apiBase}/rcms-api/3/newstopic/3`,
   {
       credentials: 'include',
-      method: 'GET',
-      mode: 'no-cors'  // Đặt chế độ là 'no-cors'
   }
 );
 </script>
