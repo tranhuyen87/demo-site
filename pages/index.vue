@@ -24,15 +24,12 @@
 
 <script setup>
 const config = useRuntimeConfig();
-console.log("123");
-const response = "";
 const { data: response } = await useFetch(
   `${config.public.apiBase}/rcms-api/5/news/3`,
   {
       credentials: 'include',
   }  
 );
-
 </script>
 
 <style>
