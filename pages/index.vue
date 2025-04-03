@@ -3,7 +3,7 @@
   <p> <p>{{ response.details.ext_2 }}</p></p>
       <section>
         <ul>
-            <li v-for="n in response.details.ext_3" :key="n.slag" class="works__item">
+            <li v-for="n in response.details.ext_3" :key="n.slug" class="works__item">
                 <img  />
                 <div class="works__item__text">
                     <h3>{{ n.ext_4 }}</h3>
@@ -30,6 +30,7 @@ const getResponse = async () => {
         // console.log(e);
     }
 };
+console.log(response);
 await getResponse();
 </script>
 
