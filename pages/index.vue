@@ -24,10 +24,11 @@
 <script setup>
 const config = useRuntimeConfig();
 
-const { data: response } = await useFetch(
-  `${config.public.apiBase}/rcms-api/1/content/details/1`,
+const { data: news } = await useFetch(
+  `${config.public.kurocoApiDomain}/rcms-api/1/news/list`,
   {
-      credentials: 'include',
+    credentials: "include",
+    server: false,
   }
 );
 </script>
