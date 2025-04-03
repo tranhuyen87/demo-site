@@ -31,7 +31,7 @@ const { data: response } = await useFetch(
       credentials: 'include',
   }  
 );
-console.log(response);
+console.log(data);
 </script>
 
 <style>
