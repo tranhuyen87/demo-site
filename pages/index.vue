@@ -3,7 +3,7 @@
       <section>
         <ul>
             <li v-for="n in response.details.ext_3" :key="n.slag" class="works__item">
-                <img :src="n.ext_3.url" />
+                <img  />
                 <div class="works__item__text">
                     <h3>{{ n.ext_4 }}</h3>
                     <p>{{ n.ext_5 }}</p>
