@@ -1,11 +1,12 @@
 <template>
   <main>
-      <header v-if="response" class="header" :style="{ backgroundImage: `url(${response.details.ext_1.url})` }">
-          <div v-if="response" class="header__text">
+    <div v-if="response">
+      <header class="header" :style="{ backgroundImage: `url(${response.details.ext_1.url})` }">
+          <div class="header__text">
               <h1>{{ response.details.ext_2 }}</h1>
           </div>
       </header>
-    
+    </div>
       <section>
           <h2>NEWS</h2>
           <ul v-if="response">
