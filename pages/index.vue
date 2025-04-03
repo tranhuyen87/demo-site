@@ -1,11 +1,7 @@
 <template>
   <main>
   tesst
-      <header class="header" :style="{ backgroundImage: `url(${response.details.ext_1.url})` }">
-          <div class="header__text">
-              <h1>{{ response.details.ext_2 }}</h1>
-          </div>
-      </header>
+      
 
       <section>
           <h2>NEWS</h2>
