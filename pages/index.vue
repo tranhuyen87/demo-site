@@ -1,6 +1,6 @@
 <template>
   <main v-if="response">
-  <p> <p>{{ response.details.ext_2 }}</p></p>
+  <p> <img :src="response.details.ext_1.url" /></p>
       <section>
         <ul>
             <li v-for="n in response.details.ext_3" :key="n.slug" class="works__item">
@@ -31,7 +31,6 @@ const getResponse = async () => {
     }
     console.log(response);
 };
-
 await getResponse();
 </script>
 
