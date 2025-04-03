@@ -1,5 +1,6 @@
 <template>
   <main v-if="response">
+  <p> <p>{{ response.details.ext_2 }}</p></p>
       <section>
         <ul>
             <li v-for="n in response.details.ext_3" :key="n.slag" class="works__item">
