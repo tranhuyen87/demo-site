@@ -17,21 +17,20 @@
 
 <script setup>
 
-const config = useRuntimeConfig();
-const response = ref(null);
-const getResponse = async () => {
+export default {
+  data() {
+    return {
+      response: null
+    };
+  },
+  async fetch() {
     try {
-        const res = await $fetch("/rcms-api/5/news/3", {
-            baseURL: config.public.apiBase,
-            credentials: "include",
-        });
-        response.value = res;
-    } catch (e) {
-        // console.log(e);
+      this.response = await this.$axios.$get('https://ohk-test.g.kuroco.app/rcms-api/5/news/3');
+    } catch (error) {
+      console.error(error);
     }
-    console.log(response);
-};
-await getResponse();
+  }
+}
 </script>
 
 <style>
