@@ -40,6 +40,7 @@ const fetchNews = async () => {
     error.value = err;
   }
 };
+console.log(news)
 
 // Fetch news data when the component is mounted
 fetchNews();
