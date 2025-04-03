@@ -1,15 +1,14 @@
 <template>
   <main>
-    <template v-if="response">
-      <header v-if="response.details.length > 0" class="header" :style="{ backgroundImage: `url(${response.details.ext_1.url})` }">
-          <div v-if="response.details.length > 0" class="header__text">
+      <header v-if="response" class="header" :style="{ backgroundImage: `url(${response.details.ext_1.url})` }">
+          <div v-if="response" class="header__text">
               <h1>{{ response.details.ext_2 }}</h1>
           </div>
       </header>
     
       <section>
           <h2>NEWS</h2>
-          <ul v-if="response.details.length > 0">
+          <ul v-if="response">
               <li v-for="n in response.details.ext_3" :key="n.slag" class="works__item">
                   <img :src="n.ext_3.url" />
                   <div class="works__item__text">
@@ -19,7 +18,6 @@
               </li>
           </ul>
       </section>
-      </template>
   </main>
 </template>
 
