@@ -24,7 +24,7 @@
 
 <script setup>
 const config = useRuntimeConfig();
-consolo.log(config);
+console.log(config);
 
 const { data: response } = await useFetch(
   `${config.public.apiBase}/rcms-api/5/news/3`,
