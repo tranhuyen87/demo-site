@@ -15,9 +15,7 @@
 </template>
 
 <script setup>
-definePageMeta({
-    middleware: "auth",
-});
+
 const config = useRuntimeConfig();
 const response = ref(null);
 const getResponse = async () => {
