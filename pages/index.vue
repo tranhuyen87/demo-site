@@ -1,41 +1,37 @@
 <template>
-  <main>
-      <header class="header" :style="{ backgroundImage: `url(${response.details.ext_1.url})` }">
-          <div class="header__text">
-              <h1>{{ response.details.ext_2 }}</h1>
-              <p>{{ response.details.ext_3 }}</p>
-          </div>
-      </header>
-
+  <main v-if="response">
       <section>
-          <h2>WORKS</h2>
-          <ul>
-              <li v-for="n in response.details.ext_4" :key="n.slag" class="works__item">
-                  <img :src="n.ext_4.url" />
-                  <div class="works__item__text">
-                      <h3>{{ n.ext_5 }}</h3>
-                      <p>{{ n.ext_6 }}</p>
-                  </div>
-              </li>
+        <ul>
+            <li v-for="n in response.details.ext_3" :key="n.slag" class="works__item">
+                <img :src="n.ext_3.url" />
+                <div class="works__item__text">
+                    <h3>{{ n.ext_4 }}</h3>
+                    <p>{{ n.ext_5 }}</p>
+                </div>
+            </li>
           </ul>
-      </section>
-
-      <section class="about">
-          <h2>ABOUT</h2>
-          <p v-html="response.details.ext_7"></p>
       </section>
   </main>
 </template>
 
 <script setup>
+definePageMeta({
+    middleware: "auth",
+});
 const config = useRuntimeConfig();
-
-const { data: response } = await useFetch(
-  `https://sample-service-site.g.kuroco.app/rcms-api/3/service/3`,
-  {
-      credentials: 'include',
-  }
-);
+const response = ref(null);
+const getResponse = async () => {
+    try {
+        const res = await $fetch("/rcms-api/5/news/3", {
+            baseURL: config.public.apiBase,
+            credentials: "include",
+        });
+        response.value = res;
+    } catch (e) {
+        // console.log(e);
+    }
+};
+await getResponse();
 </script>
 
 <style>
