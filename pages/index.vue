@@ -29,8 +29,9 @@ const getResponse = async () => {
     } catch (e) {
         // console.log(e);
     }
+    console.log(response);
 };
-console.log(response);
+
 await getResponse();
 </script>
 
