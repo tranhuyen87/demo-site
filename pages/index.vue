@@ -24,10 +24,9 @@
 
 <script setup>
 const config = useRuntimeConfig();
-console.log(config);
 
 const { data: response } = await useFetch(
-  `https://ohk-test.g.kuroco.app/rcms-api/5/news/3`,
+  `${config.public.apiBase}/rcms-api/5/news/3`,
   {
       credentials: 'include',
   }
