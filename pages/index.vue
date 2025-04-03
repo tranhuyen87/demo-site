@@ -1,15 +1,15 @@
 <template>
   <main>
     <template v-if="response">
-      <header class="header" :style="{ backgroundImage: `url(${response.details.ext_1.url})` }">
-          <div class="header__text">
+      <header v-if="response.details.length > 0" class="header" :style="{ backgroundImage: `url(${response.details.ext_1.url})` }">
+          <div v-if="response.details.length > 0" class="header__text">
               <h1>{{ response.details.ext_2 }}</h1>
           </div>
       </header>
     
       <section>
           <h2>NEWS</h2>
-          <ul>
+          <ul v-if="response.details.length > 0">
               <li v-for="n in response.details.ext_3" :key="n.slag" class="works__item">
                   <img :src="n.ext_3.url" />
                   <div class="works__item__text">
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-console.log("123")
+console.log("123");
 const config = useRuntimeConfig();
 const { data: response } = await useFetch(
   `${config.public.apiBase}/rcms-api/5/news/3`,
