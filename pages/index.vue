@@ -1,15 +1,17 @@
 <template>
   <main>
   tesst
-      <div class="header__text">
+      <header class="header" :style="{ backgroundImage: `url(${response.details.ext_1.url})` }">
+          <div class="header__text">
               <h1>{{ response.details.ext_2 }}</h1>
           </div>
+      </header>
 
       <section>
           <h2>NEWS</h2>
           <ul>
               <li v-for="n in response.details.ext_3" :key="n.slag" class="works__item">
-                  <img  />
+                  <img :src="n.ext_3.url" />
                   <div class="works__item__text">
                       <h3>{{ n.ext_4 }}</h3>
                       <p>{{ n.ext_5 }}</p>
@@ -22,15 +24,10 @@
 
 <script setup>
 const config = useRuntimeConfig();
-console.log("123");
-const { data: response } = await useFetch(
-  `${config.public.apiBase}/rcms-api/5/news/3`,
-  {
-      credentials: 'include',
-  }
-  console.log(data);
-);
-
+const { data: response } = await useFetch('/rcms-api/5/news/3',{
+  baseURL:config.public.apiBase,
+  credentials: 'include',
+});
 </script>
 
 <style>
