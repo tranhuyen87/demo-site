@@ -3,7 +3,7 @@
   <p> <img :src="response.details.ext_1.url" /></p>
       <section>
         <ul v-if="response">
-            <li v-for="n in response.details.ext_3" :key="n.slug" class="works__item">
+            <li v-for="n in response.details.ext_3" :key="n.id" class="works__item">
                 <img  />
                 <div class="works__item__text">
                     <h3>{{ n.ext_4 }}</h3>
