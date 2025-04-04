@@ -43,17 +43,18 @@ const getResponse = async () => {
   }
   console.log(response);
   // Combine the data into a single array
-  const combinedData = computed(() => {
-    return response.details.ext_3.map((item, index) => ({
-      id: item.id,
-      url: item.url,
-      desc: item.desc,
-      info: response.details.ext_5[index] || '', // Get corresponding info from ext_5
-    })).concat(response.details.ext_4.map((desc, index) => ({
-      id: `ext_4_${index}`, // Unique ID for ext_4 items
-      desc: desc,
-    })));
-  });
+    const combinedData = computed(() => {
+      return response.details.ext_3.map((item, index) => ({
+        id: item.id,
+        url: item.url,
+        desc: item.desc,
+        info: response.details.ext_5[index] || '', // Get corresponding info from ext_5
+      })).concat(response.details.ext_4.map((desc, index) => ({
+        id: `ext_4_${index}`, // Unique ID for ext_4 items
+        desc: desc,
+      })));
+    });
+    console.log(combinedData);
 };
 await getResponse();
 
