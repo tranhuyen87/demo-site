@@ -5,19 +5,7 @@
       <div><img :src="response.details.ext_1.url" /></div>
       <h1>{{ response.details.ext_2 }}</h1>
     </div>
-    <div class="news-list">
-      <div>
-        <a href="#">
-          <div class="img" v-for="img in response.details.ext_3" :key="img.id"><img :src="img.url" /></div>
-          <div class="ttl"></div>
-          <div class="date"></div>
-          <ul class="tag">
-            <li></li>
-          </ul>
-        </a>
-      </div>
-    </div>
-    <ul>
+    <ul class="news-list">
       <li v-for="item in combinedData" :key="item.id">
         <img v-if="item.url" :src="item.url" :alt="item.desc" />
         <p v-if="item.desc">{{ item.desc }}</p>
