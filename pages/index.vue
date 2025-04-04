@@ -17,6 +17,13 @@
         </a>
       </div>
     </div>
+    <ul>
+      <li v-for="item in combinedData" :key="item.id">
+        <img v-if="item.url" :src="item.url" :alt="item.desc" />
+        <p v-if="item.desc">{{ item.desc }}</p>
+        <p v-if="item.info">{{ item.info }}</p>
+      </li>
+    </ul>
   </div>
   </main>
 </template>
@@ -37,6 +44,19 @@ const getResponse = async () => {
   console.log(response);
 };
 await getResponse();
+
+// Combine the data into a single array
+const combinedData = computed(() => {
+  return response.details.ext_3.value.map((item, index) => ({
+    id: item.id,
+    url: item.url,
+    desc: item.desc,
+    info: response.details.ext_5.value[index] || '', // Get corresponding info from ext_5
+  })).concat(response.details.ext_4.value.map((desc, index) => ({
+    id: `ext_4_${index}`, // Unique ID for ext_4 items
+    desc: desc,
+  })));
+});
 
 </script>
 
