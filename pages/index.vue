@@ -1,44 +1,59 @@
 <template>
-  <main v-if="response">
-  <p> <img :src="response.details.ext_1.url" /></p>
-      <section>
-        <ul v-if="response">
-            <li v-for="n in response.details.ext_3" :key="n.id" class="works__item">
-                <img  />
-                <div class="works__item__text">
-                    <h3>{{ n.ext_4 }}</h3>
-                    <p>{{ n.ext_5 }}</p>
-                </div>
-            </li>
+  <main>
+  <div v-if="response" class="content">
+    <div class="main-news">
+      <div><img :src="response.details.ext_1.url" /></div>
+      <h1>{{ response.details.ext_2 }}</h1>
+    </div>
+    <div class="news-list">
+      <div>
+        <a href="#">
+          <div class="img" v-for="img in response.details.ext_3" :key="img.id"><img :src="img.url" /></div>
+          <div class="ttl"></div>
+          <div class="date"></div>
+          <ul class="tag">
+            <li></li>
           </ul>
-      </section>
+        </a>
+      </div>
+    </div>
+  </div>
   </main>
 </template>
 
 <script setup>
-
-export default {
-  data() {
-    return {
-      response: null
-    };
-  },
-  async fetch() {
-    try {
-      this.response = await this.$axios.$get('https://ohk-test.g.kuroco.app/rcms-api/5/news/3');
-    } catch (error) {
-      console.error(error);
-    }
+const config = useRuntimeConfig();
+const response = ref(null);
+const getResponse = async () => {
+  try {
+    const res = await $fetch("/rcms-api/5/news/3", {
+        baseURL: config.public.apiBase,
+        credentials: "include",
+    });
+    response.value = res;
+  } catch (e) {
+      // console.log(e);
   }
-}
-console.log("123");
+  console.log(response);
+};
+await getResponse();
+
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
 body {
   margin: 0;
   font-size: 1em;
   line-height: 1.5;
+}
+.content {
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 ul {
