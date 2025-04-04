@@ -30,41 +30,45 @@
 
 <script setup>
 const config = useRuntimeConfig();
-const response = ref(null);
+
+import { ref, computed } from 'vue';
+
+const response = ref(null); // Initialize a ref for the response
+
 const getResponse = async () => {
   try {
+    // Fetch the data from the API
     const res = await $fetch("/rcms-api/5/news/3", {
-        baseURL: config.public.apiBase,
-        credentials: "include",
+      baseURL: config.public.apiBase,
+      credentials: "include",
     });
-    response.value = res;
+    response.value = res; // Store the response
   } catch (e) {
-      console.log(e);
+    console.error(e); // Log the error if it occurs
   }
-  console.log(response);
-  // Combine the data into a single array after the response is received
-  const combinedData = computed(() => {
-    if (!response.value || !response.value.details) return []; // Check for valid response
-
-    const ext3 = response.value.details.ext_3 || [];
-    const ext4 = response.value.details.ext_4 || [];
-    const ext5 = response.value.details.ext_5 || [];
-
-    return ext3.map((item, index) => ({
-      id: item.id,
-      url: item.url,
-      desc: item.desc,
-      info: ext5[index] || '', // Get corresponding info from ext_5
-    })).concat(ext4.map((desc, index) => ({
-      id: `ext_4_${index}`, // Unique ID for ext_4 items
-      desc: desc,
-    })));
-  });
-
-  console.log(combinedData.value); // Log the combined data
-
 };
+
+// Call the function to fetch data
 await getResponse();
+
+// Combine the data into a single array after the response is received
+const combinedData = computed(() => {
+  if (!response.value || !response.value.details) return []; // Check for valid response
+
+  const ext3 = response.value.details.ext_3 || [];
+  const ext4 = response.value.details.ext_4 || [];
+  const ext5 = response.value.details.ext_5 || [];
+
+  return ext3.map((item, index) => ({
+    id: item.id,
+    url: item.url,
+    desc: item.desc,
+    info: ext5[index] || '', // Get corresponding info from ext_5
+  })).concat(ext4.map((desc, index) => ({
+    id: `ext_4_${index}`, // Unique ID for ext_4 items
+    desc: desc,
+  })));
+});
 
 
 </script>
